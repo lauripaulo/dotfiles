@@ -18,7 +18,9 @@ This symlinks the tracked files into `$HOME`. The parent directory of the repo i
 
 - `.zshrc` — Zsh / Oh My Zsh configuration
 - `.zshenv` — Zsh environment loader
+- `.gitconfig` — Git configuration (user identity, push, core settings, hooks path)
 - `.claude/settings.json` — Claude Code settings
+- `.config/ghostty/config.ghostty` — Ghostty terminal emulator configuration
 - `.config/opencode/opencode.json` — OpenCode configuration
 
 ## Prerequisites
@@ -41,7 +43,6 @@ This repo does not install or update them.
 
 These files in `$HOME` are good candidates to pull into this repo next:
 
-- `~/.gitconfig`
 - `~/.config/git/` — includes the `ignore` file and `post-commit`/`post-checkout` hooks.
   The hooks invoke `tokensave`, so that tool must be installed on the machine.
 - `~/.zprofile`
@@ -66,5 +67,5 @@ If these are added, the recommended layout is modular packages (e.g. `zsh/`, `gi
 `btop/`, `micro/`, `topgrade/`, `zed/`) so you can apply them per machine:
 
 ```bash
-stow -d . -t ~ zsh git btop micro topgrade zed claude opencode
+stow -d . -t ~ zsh git btop micro topgrade zed claude opencode ghostty
 ```
