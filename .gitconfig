@@ -1,0 +1,13 @@
+[push]
+	default = simple
+[user]
+	email = lauripaulo@gmail.com
+	name = Lauri Laux
+[core]
+    autocrlf = input
+    editor = micro
+	quotepath = off
+	hooksPath = ~/.config/git/hooks
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[color]
+	ui = auto
