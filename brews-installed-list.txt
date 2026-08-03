@@ -188,8 +188,6 @@ ghostty
 google-gemini
 inkscape
 iterm2
-joplin
-jordanbaird-ice
 keepassxc
 keka
 kitty
