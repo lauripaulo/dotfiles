@@ -23,6 +23,23 @@ This symlinks the tracked files into `$HOME`. The parent directory of the repo i
 - `.config/ghostty/config.ghostty` — Ghostty terminal emulator configuration
 - `.config/opencode/opencode.json` — OpenCode configuration
 
+## Helper scripts
+
+These files are kept in the repo but excluded from stowing:
+
+- `install-brew-apps.py` — reads `brews-installed-list.txt` and runs `brew install` for each package.
+- `brews-installed-list.txt` — list of Homebrew packages to install on a fresh machine.
+
+### Installing Homebrew packages
+
+Run the helper script from the repo root:
+
+```bash
+./install-brew-apps.py
+```
+
+The script skips empty lines and comments, then runs `brew install <package>` for each entry in `brews-installed-list.txt`. Homebrew resolves and installs dependencies automatically. If a single package fails, the script continues with the rest and reports the failure at the end.
+
 ## Prerequisites
 
 `.zshrc` expects these tools to be installed independently:
