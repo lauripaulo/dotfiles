@@ -1,0 +1,80 @@
+{
+    "model": "claude-fable-5[1m]",
+    "extraKnownMarketplaces": {
+        "caveman": {
+            "source": {
+                "source": "github",
+                "repo": "JuliusBrussee/caveman"
+            }
+        }
+    },
+    "effortLevel": "high",
+    "tui": "fullscreen",
+    "theme": "dark",
+    "enabledPlugins": {
+        "caveman@caveman": true
+    },
+    "hooks": {
+        "PreToolUse": [
+            {
+                "matcher": "Grep|Glob",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-code-discovery-gate",
+                        "timeout": 5
+                    }
+                ]
+            }
+        ],
+        "SessionStart": [
+            {
+                "matcher": "startup",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-session-reminder"
+                    }
+                ]
+            },
+            {
+                "matcher": "resume",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-session-reminder"
+                    }
+                ]
+            },
+            {
+                "matcher": "clear",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-session-reminder"
+                    }
+                ]
+            },
+            {
+                "matcher": "compact",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-session-reminder"
+                    }
+                ]
+            }
+        ],
+        "SubagentStart": [
+            {
+                "matcher": "*",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "~/.claude/hooks/cbm-subagent-reminder"
+                    }
+                ]
+            }
+        ]
+    }
+}
