@@ -36,3 +36,35 @@ This repo does not install or update them.
 - `.zshenv` sources `$HOME/.cargo/env`. If Rust/cargo is not installed, zsh will print a non-fatal warning on every shell start.
 - `.zshrc` and `.config/opencode/opencode.json` contain API keys and local paths. Do not share the repo without stripping those values first.
 - `.claude/settings.json` references Claude hooks at `~/.claude/hooks/cbm-*` that are not tracked in this repo.
+
+## Future Stow candidates
+
+These files in `$HOME` are good candidates to pull into this repo next:
+
+- `~/.gitconfig`
+- `~/.config/git/` — includes the `ignore` file and `post-commit`/`post-checkout` hooks.
+  The hooks invoke `tokensave`, so that tool must be installed on the machine.
+- `~/.zprofile`
+- `~/.config/btop/`
+- `~/.config/topgrade.toml` + `~/.config/topgrade.d/`
+- `~/.config/micro/` — only the `bindings.json` file; exclude runtime dirs
+  `backups/` and `buffers/`.
+
+Use with care:
+
+- `~/.config/zed/settings.json` — good config, but the surrounding `prompts/` and
+  `themes/` directories may be machine-generated or personal.
+- `~/.config/iterm2/` — mostly runtime symlinks and sockets; only useful if you
+  add minimal plist files.
+
+Avoid stowing:
+
+- Secrets or state: `~/.ssh/`, `~/.tokensave/`, `~/.cache/`, `~/.zsh_history`,
+  `~/.zcompdump*`, `~/.local/`, `~/.claude/` (runtime), `~/.oh-my-zsh/`.
+
+If these are added, the recommended layout is modular packages (e.g. `zsh/`, `git/`,
+`btop/`, `micro/`, `topgrade/`, `zed/`) so you can apply them per machine:
+
+```bash
+stow -d . -t ~ zsh git btop micro topgrade zed claude opencode
+```
