@@ -23,6 +23,7 @@ _darcs
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
+^/AGENTS.*
 
 # Repo helper scripts and package lists
 ^/install-brew-apps\.py
