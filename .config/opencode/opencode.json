@@ -1,0 +1,46 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "provider": {
+        "alduin-llama-cpp": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "Alduin llama.cpp",
+            "options": {
+                "baseURL": "http://192.168.1.98:8086/v1"
+            },
+            "models": {
+                "ornith-1.0-35b": {
+                    "name": "Ornith 1.0 35B (coding)"
+                }
+            }
+        }
+    },
+    "mcp": {
+        "context7": {
+            "type": "remote",
+            "url": "https://mcp.context7.com/mcp",
+            "enabled": true,
+            "headers": {
+                "CONTEXT7_API_KEY": "ctx7sk-b0b5495a-72c3-4497-acf4-20eea96482ae"
+            }
+        },
+        "codebase-memory-mcp": {
+            "enabled": true,
+            "type": "local",
+            "command": [
+                "/Users/lauri/.local/bin/codebase-memory-mcp"
+            ]
+        },
+        "gh_grep": {
+          "type": "remote",
+          "url": "https://mcp.grep.app"
+        },
+        "playwright": {
+          "type": "local",
+          "command": [
+            "npx",
+            "@playwright/mcp@latest"
+          ],
+          "enabled": true
+        }
+    }
+}
