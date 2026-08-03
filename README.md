@@ -38,6 +38,11 @@ Run the helper script from the repo root:
 ./install-brew-apps.py
 ```
 
+To export the list run:
+```bash
+brew list --full-name -1 > brews-installed-list.txt
+```
+
 The script skips empty lines and comments, then runs `brew install <package>` for each entry in `brews-installed-list.txt`. Homebrew resolves and installs dependencies automatically. If a single package fails, the script continues with the rest and reports the failure at the end.
 
 ## Prerequisites
