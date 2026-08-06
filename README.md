@@ -55,6 +55,27 @@ The script skips empty lines and comments, then runs `brew install <package>` fo
 
 This repo does not install or update them.
 
+### Linux install (Debian)
+
+```
+sudo apt install tealdeer thefuck eza bat fd-find fzf
+```
+
+- Fresh editor install
+```
+curl https://raw.githubusercontent.com/sinelaw/fresh/refs/heads/master/scripts/install.sh | sh
+```
+
+- Python uv install
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+- Install fzf-git.sh
+```
+cd /home/lauri/.local/
+git clone 
+```
 ## Notes
 
 - `.zshenv` sources `$HOME/.cargo/env`. If Rust/cargo is not installed, zsh will print a non-fatal warning on every shell start.
