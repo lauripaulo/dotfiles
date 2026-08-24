@@ -1,46 +1,27 @@
 # Agent Notes
 
-This is a personal dotfiles repository, not a buildable project. All useful files are tracked dotfiles at the repo root and are meant to be symlinked into `$HOME` with GNU Stow.
+This is a personal dotfiles repository managed with GNU Stow, not a buildable application. Tracked dotfiles live at the repository root and are intended to be linked into `$HOME`.
 
-## Stow workflow
+## Workflow
 
-- Apply dotfiles from the repo root to `$HOME`:  
-  `stow .` (default target is the parent directory of the repo, i.e. `$HOME`).
-- The repo contains a `.stow-local-ignore` that excludes README, LICENSE, `.git`, and a few other files from stowing.
-- There is no install script, Makefile, or test suite.
+- From the repository root, apply the package with `stow .`. Stow targets the repository's parent by default, so the checkout should be directly under `$HOME` for this command to target `$HOME`.
+- This checkout is under `~/git/pessoal/dotfiles`; apply it to the home directory with `stow --target="$HOME" .` instead of relying on the default target.
+- On host `alduin`, do not apply the tracked OpenCode config unless explicitly requested; use `stow --target="$HOME" --ignore='opencode' .` for the normal workflow.
+- Host-specific workflows for `alduin`, `diaspar.lan` (Debian homelab), and `MiniMac` (macOS work machine) are documented in `README.md`; do not apply the `alduin` OpenCode exclusion to the other hosts without a reason.
+- `.stow-local-ignore` deliberately excludes `README*`, `AGENTS*`, VCS metadata, and the Homebrew helper/list from installation.
+- There is no build, test, lint, formatter, package-manager, or CI workflow. Do not invent a project verification command.
+- `./install-brew-apps.py` is an optional Homebrew-only helper. It reads `brews-installed-list.txt`, continues after individual failures, and currently exits successfully after reporting failures.
 
-## Shell start-up noise
+## Runtime Dependencies
 
-`.zshenv` unconditionally sources `$HOME/.cargo/env`. If Rust/cargo is not installed, every new zsh prints:  
-`/Users/lauri/.zshenv:.:1: no such file or directory: /Users/lauri/.cargo/env`  
-This is non-fatal but expected when cargo is missing. Either install cargo or guard the line in `.zshenv` if you want it silent.
+- `.zshrc` requires Oh My Zsh at `$HOME/.oh-my-zsh`, plus `eza`, `bat`, `fzf`, `fd`, `thefuck`, `micro`, and `$HOME/.local/fzf-git.sh/fzf-git.sh`.
+- `.zshenv` unconditionally sources `$HOME/.cargo/env`; without Rust/cargo, every new zsh emits a non-fatal missing-file warning.
+- `.claude/settings.json` references untracked hooks under `~/.claude/hooks/cbm-*`.
+- `alduin` is Fedora Linux with `/home/lauri` as `$HOME`, `/usr/bin/zsh` as the shell, and `dnf` as the system package manager.
+- On `alduin`, `.zshrc` also loads NVM, `$HOME/.local/bin/env`, pnpm, and machine-specific dummy-plug display defaults; preserve these when merging `.zshrc`.
+- On `alduin`, install the base tools with `sudo dnf install tealdeer thefuck eza bat fd-find fzf stow`; do not use the Debian `apt` command.
+- On `alduin`, `fresh` and `uv` are user-owned installs under `$HOME/.local`, and `fzf-git.sh` lives at `$HOME/.local/fzf-git.sh`.
 
-## External dependencies (not managed here)
+## Sensitive Configuration
 
-`.zshrc` assumes these tools are installed independently:
-
-- Oh My Zsh at `$HOME/.oh-my-zsh`
-- `eza`, `bat`, `fzf`, `fd`, `thefuck`, `micro`
-- `fzf-git.sh` at `$HOME/.local/fzf-git.sh/fzf-git.sh`
-
-Nothing in this repo installs or checks them.
-
-## Secrets and local paths
-
-The following tracked files contain secrets or machine-specific paths:
-
-- `.zshrc`: `export CONTEXT7_API_KEY="..."`
-- `.config/opencode/opencode.json`: `CONTEXT7_API_KEY` header and a local MCP server path `/Users/lauri/.local/bin/codebase-memory-mcp`
-
-Do not share the repository or commit diffs without stripping these values.
-
-## Known stale / hand-managed files
-
-- `.claude/settings.json` references Claude hooks at `~/.claude/hooks/cbm-*` that are not tracked in this repo.
-- `.config/opencode/opencode.json` is tracked but tied to local MCP binaries and a remote API key.
-
-## What not to expect
-
-- No package manager, no build step, no formatter/linter config, no CI.
-- No tests or verification command.
-- No automated provisioning of macOS or external dependencies.
+- `.zshrc` and `.config/opencode/opencode.json` contain API keys and machine-specific configuration, including a local MCP binary path. Do not expose or broadly share their values; preserve local paths unless intentionally making the configuration portable.

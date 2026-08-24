@@ -136,4 +136,26 @@ eval $(thefuck --alias fk)
 
 # PATH updates
 export PATH="$HOME/.local/bin:$PATH"
+
+# Local toolchain setup
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+. "$HOME/.local/bin/env"
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+
+# Dummy-plug display defaults
+export DEFAULT_SEAT_DISPLAY=DP-2
+export DEFAULT_STREAM_DISPLAY=HDMI-A-2
+export DEFAULT_RESOLUTION=2560x1440
+export DEFAULT_REFRESH_RATE=165
+export DEFAULT_VRR_MODE=automatic
+export DEFAULT_HDR=disable
+
 export CONTEXT7_API_KEY="ctx7sk-428cdd8b-75d3-46aa-a184-16a4f0c892db"
