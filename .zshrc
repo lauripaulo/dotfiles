@@ -106,6 +106,7 @@ alias ll="eza -lgh --icons --git"
 alias llh="eza -lgha"
 alias ls="eza"
 alias cat="bat"
+alias hermes-ateli="ssh -L 9119:localhost:9119 azureuser@4.228.216.30"
 
 # Integrações
 eval "$(fzf --zsh)"
@@ -141,7 +142,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-. "$HOME/.local/bin/env"
+#. "$HOME/.local/bin/env"
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -159,3 +160,8 @@ export DEFAULT_VRR_MODE=automatic
 export DEFAULT_HDR=disable
 
 export CONTEXT7_API_KEY="ctx7sk-428cdd8b-75d3-46aa-a184-16a4f0c892db"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/lauri/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
